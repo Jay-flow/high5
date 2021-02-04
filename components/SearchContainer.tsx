@@ -1,51 +1,9 @@
-import { Input } from "antd"
-import styled from "styled-components"
 import { useState } from "react"
 import Link from "next/link"
 
 interface searchClickProps {
   searchClick: boolean
 }
-
-const { Search } = Input
-const Container = styled.div`
-  height: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-width: 100px;
-`
-const StyledSearch = styled(Search)`
-  /* margin-bottom: ${(props) => (props.searchClick ? "0px" : "100px")}; */
-  max-width: 580px;
-`
-
-const StyeldCategoryContainer = styled.div<searchClickProps>`
-  overflow: hidden;
-  display: ${(props) => (props.searchClick ? "initial" : "none")};
-  height: 100%;
-  width: 100%;
-  max-width: 580px;
-  padding-top: 10px;
-  padding-bottom: 30px;
-`
-
-const StyeldCategories = styled.div`
-  /* overflow-y: scroll; */
-  overflow: auto;
-  padding: 5px 10px;
-  border-radius: 4px;
-  height: 100%;
-  width: 100%;
-  background-color: white;
-`
-const StyeldCategory = styled.div`
-  cursor: pointer;
-  border-bottom: 1px solid #f0f2f5;
-  padding-bottom: 3px;
-  margin-bottom: 5px;
-`
 
 const SearchContainer = (): JSX.Element => {
   const [searchClick, setSearchClick] = useState(false)

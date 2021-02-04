@@ -1,22 +1,8 @@
 import Link from "next/link"
-import styled from "styled-components"
 import SwiperCore, { Autoplay } from "swiper"
 import "swiper/components/navigation/navigation.min.css"
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/swiper-bundle.min.css"
-
-const StyledSwiper = styled(Swiper)`
-  height: 40%;
-`
-
-const StyledImage = styled.img`
-  border-radius: 4px;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  object-position: 50% 50%;
-  cursor: pointer;
-`
 
 SwiperCore.use([Autoplay])
 
@@ -32,14 +18,14 @@ const PictureContainer: React.FC = () => {
   const pictures = pictureUrl.map((url) => (
     <SwiperSlide key={url}>
       <Link href={{ pathname: "/product/detail", query: { imageUrl: url } }}>
-        <StyledImage src={url} />
+        <img src={url} alt="url" />
       </Link>
     </SwiperSlide>
   ))
   return (
-    <StyledSwiper spaceBetween={30} slidesPerView={3} autoplay={{ delay: 5000 }}>
+    <Swiper spaceBetween={30} slidesPerView={3} autoplay={{ delay: 5000 }}>
       {pictures}
-    </StyledSwiper>
+    </Swiper>
   )
 }
 
