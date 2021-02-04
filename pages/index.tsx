@@ -1,15 +1,20 @@
 import { useEffect } from "react"
 import publicIp from "public-ip"
 import { deviceDetect, isMobile, isTablet } from "react-device-detect"
+import { RequestType } from "../utils/const"
 
-interface userData {
+export interface userData {
   ip: string
   device: string
   os: string
   userAgent: string
 }
 
+// const fetcher = (url) => fetch(url).then((res) => res.json())
+
 export default function Home(): JSX.Element {
+  // const { data, error } = useSwr("/api/user", fetcher)
+
   const getUserData = async (): Promise<userData> => {
     let device: string
     let _os: string
@@ -33,9 +38,16 @@ export default function Home(): JSX.Element {
     }
   }
 
+  const inputUserData = (userData: userData) => {
+    fetch("/api/user", {
+      method: RequestType.PUT,
+      body: JSON.stringify(userData)
+    })
+  }
+
   useEffect(() => {
     getUserData().then((userData: userData) => {
-      console.log(userData)
+      inputUserData(userData)
     })
   }, [])
 

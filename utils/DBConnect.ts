@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-async function DBConnect(): Promise<typeof mongoose> {
+const DBConnect = async (): Promise<typeof mongoose> => {
   // check if we have a connection to the database or if it's currently
   // connecting or disconnecting (readyState 1, 2 and 3)
   if (mongoose.connection.readyState >= 1) {
@@ -15,4 +15,16 @@ async function DBConnect(): Promise<typeof mongoose> {
   })
 }
 
-export default DBConnect
+const getModel = (
+  collectionName: string,
+  schema: mongoose.Schema
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
+): mongoose.Model<mongoose.Document<any>> => {
+  try {
+    return mongoose.model(collectionName)
+  } catch (e) {
+    return mongoose.model(collectionName, schema)
+  }
+}
+
+export { DBConnect, getModel }

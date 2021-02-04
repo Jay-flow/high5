@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import { getModel } from "../utils/DBConnect"
 
 const UserSchema = new mongoose.Schema({
   ip: {
@@ -19,4 +20,4 @@ const UserSchema = new mongoose.Schema({
   }
 })
 
-export default mongoose.model("User", UserSchema)
+export default getModel("users", UserSchema)

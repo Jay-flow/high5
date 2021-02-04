@@ -1,19 +1,17 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import User from "../../models/User"
-import DBConnect from "../../utils/dbConnect"
-
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { DBConnect } from "../../utils/DBConnect"
+import { RequestType } from "../../utils/const"
+import { userData } from "../index"
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   const { method } = req
-  console.log(method)
-  await DBConnect()
-  // User.find({ ip: {req.body}})
-  // const user = await User.create({
-  //   ip: "192.195.142.31",
-  //   device: "Desktop",
-  //   os: "MacOS",
-  //   userAget: "fuck"
-  // })
-  // res.status(201).json({ success: true, data: user })
+  let statusCode = 200
+  if (method == RequestType.PUT) {
+    await DBConnect()
+    const reqUser: userData = JSON.parse(req.body)
+    await User.create(new User(reqUser))
+    statusCode = 201
+  }
+  res.status(statusCode).json({ success: true })
 }
