@@ -8,7 +8,7 @@ import { RequestType } from "../utils/const"
 import { getCurrentDate } from "../utils/DateTime"
 
 export interface userData {
-  id?: string
+  _id?: string
   ip: string
   device: string
   os: string
