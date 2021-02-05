@@ -5,7 +5,7 @@ import { userData } from "./_app"
 const Usersfetcher = (url) => fetch(url).then((res) => res.json())
 
 const Admin: React.FC = () => {
-  const { data, error } = useSwr("/api/user", Usersfetcher)
+  const { data, error } = useSwr("/api/users", Usersfetcher)
   if (error) return <div>failed to load</div>
   if (!data) return <div>loading...</div>
   const users = data.map((user: userData) => <h1 key={user.id}>{user.ip}</h1>)

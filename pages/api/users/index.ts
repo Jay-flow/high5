@@ -17,4 +17,5 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
     const users = await User.find({})
     res.status(200).json(users)
   }
+  res.end()
 }

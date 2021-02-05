@@ -4,8 +4,8 @@ import { useRouter } from "next/router"
 import { useCookies } from "react-cookie"
 import publicIp from "public-ip"
 import { deviceDetect, isMobile, isTablet } from "react-device-detect"
-import _ from "lodash"
 import { RequestType } from "../utils/const"
+import { getCurrentDate } from "../utils/DateTime"
 
 export interface userData {
   id?: string
@@ -14,6 +14,7 @@ export interface userData {
   os: string
   userAgent: string
   createdAt: Date
+  updatedAt: Date
   movePath: Array<string>
 }
 
@@ -51,7 +52,8 @@ function MyApp({ Component, pageProps }): JSX.Element {
       os: _os,
       device: device,
       userAgent: _userAgent,
-      createdAt: new Date(_.now() + 3600000 * 9),
+      createdAt: getCurrentDate(),
+      updatedAt: getCurrentDate(),
       movePath: [path]
     }
   }
@@ -65,18 +67,22 @@ function MyApp({ Component, pageProps }): JSX.Element {
   }
 
   const setCookieForUser = async () => {
+    const userData = await getUserData()
+    const userID = await inputUserData(userData)
+    setCookie("high5UserID", userID, {
+      maxAge: 3600 * 24 * 365
+    })
+  }
+
+  const insertUserLog = async () => {
     if (cookie.high5UserID == undefined) {
-      const userData = await getUserData()
-      const userID = await inputUserData(userData)
-      setCookie("high5UserID", userID, {
-        maxAge: 3600 * 24 * 365
-      })
+      await setCookieForUser()
     } else {
       updateUserMovePath()
     }
   }
   useEffect(() => {
-    setCookieForUser()
+    insertUserLog()
   }, [])
   return <Component {...pageProps} />
 }
