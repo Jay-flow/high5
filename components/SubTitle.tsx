@@ -5,7 +5,6 @@ interface SubTitleProps {
 }
 
 const SubTitle: React.FC<SubTitleProps> = ({ children, style, className }) => {
-  console.log(className)
   return (
     <span
       className={`text-xl font-light tracking-wider font-roboto ${className}`}

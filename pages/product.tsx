@@ -4,6 +4,7 @@ import IconButton from "../components/IconButton"
 import Youtube from "../asset/Youtube"
 import Naver from "../asset/Naver"
 import ImgNavigation from "../components/ImgNavigation"
+import { useState } from "react"
 
 const Product: React.FC = () => {
   const features = [
@@ -16,6 +17,27 @@ const Product: React.FC = () => {
     "디자인",
     "멀티태스크"
   ]
+
+  const [index, setIndex] = useState(0)
+  const imageUrls = [
+    "https://images.unsplash.com/photo-1612832164066-305667c23a01?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    "https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1612831200752-a70d1d1bb83b?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    "https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+  ]
+
+  const pageUp = () => {
+    if (index < imageUrls.length) {
+      setIndex(index + 1)
+    }
+  }
+
+  const pageDown = () => {
+    if (index > 0) {
+      setIndex(index - 1)
+    }
+  }
 
   return (
     <div className="grid h-full grid-cols-2">
@@ -47,15 +69,20 @@ const Product: React.FC = () => {
           </IconButton>
         </div>
         <div className="flex justify-end">
-          <ImgNavigation className="w-32" />
+          <ImgNavigation
+            className="w-32"
+            pageUp={pageUp}
+            pageDown={pageDown}
+            imageUrlLength={5}
+            index={index}
+          />
         </div>
       </div>
       <div className="h-full">
         <div
           className="h-full bg-center bg-cover"
           style={{
-            backgroundImage:
-              "url('https://dlcdnimgs.asus.com/websites/MY/products/4cDARfbRGBOGLKa1/desktop/01_1.jpg')"
+            backgroundImage: `url(${imageUrls[index]})`
           }}></div>
       </div>
     </div>

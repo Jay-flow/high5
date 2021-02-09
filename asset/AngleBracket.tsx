@@ -1,12 +1,15 @@
 interface AngleBracketProps {
   type: "left" | "right"
+  className?: string
+  onClick: (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void
 }
 
-const AngleBracket: React.FC<AngleBracketProps> = ({ type }) => {
+const AngleBracket: React.FC<AngleBracketProps> = ({ type, onClick, className }) => {
   return type == "left" ? (
     <svg
-      className="cursor-pointer"
+      className={`cursor-pointer ${className}`}
       width="12"
+      onClick={onClick}
       height="18"
       viewBox="0 0 12 18"
       fill="none"
@@ -15,9 +18,10 @@ const AngleBracket: React.FC<AngleBracketProps> = ({ type }) => {
     </svg>
   ) : (
     <svg
-      className="cursor-pointer"
+      className={`cursor-pointer ${className}`}
       width="12"
       height="18"
+      onClick={onClick}
       viewBox="0 0 12 18"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
