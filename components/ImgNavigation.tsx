@@ -19,6 +19,7 @@ const ImgNavigation: React.FC<ImgNavigationProps> = ({
   return (
     <div className={`flex items-center justify-between w-32 text-base font-medium ${className}`}>
       <AngleBracket
+        bold={true}
         type="left"
         onClick={pageDown}
         className={reIndex == 1 ? "invisible" : "visible"}
@@ -29,6 +30,7 @@ const ImgNavigation: React.FC<ImgNavigationProps> = ({
         <span className="text-gray-400">{imageUrlLength}</span>
       </div>
       <AngleBracket
+        bold={true}
         type="right"
         onClick={pageUp}
         className={reIndex == imageUrlLength ? "invisible" : "visible"}
