@@ -12,9 +12,15 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
   await DBConnect()
   if (method == RequestType.PUT) {
     const user = await User.findById(id)
-    const movePath = [...user.get("movePath"), path]
-    await user.updateOne({ movePath: movePath, updatedAt: getCurrentDate() })
+    if (user != null) {
+      const movePath = [...user.get("movePath"), path]
+      await user.updateOne({ movePath: movePath, updatedAt: getCurrentDate() })
+      res.status(200).json({ isExistUserDataInDB: true })
+    } else {
+      res.status(200).json({ isExistUserDataInDB: false })
+    }
+  } else {
+    res.status(200)
   }
-  res.status(200)
   res.end()
 }

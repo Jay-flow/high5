@@ -72,42 +72,48 @@ export default function Home(): JSX.Element {
           추천상품
         </h1>
         <div className="flex space-x-5 text-2xl font-light leading-9">
-          <div>
-            <img
-              src="https://images.unsplash.com/photo-1525981045450-60e3d2ca0b8f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
-              alt="image_alt"
-              className="object-cover object-center mb-5"
-            />
-            <span>
-              실패하지 않는
-              <br />
-              남자 선물
-            </span>
-          </div>
-          <div>
-            <img
-              src="https://images.unsplash.com/photo-1525981045450-60e3d2ca0b8f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
-              alt="image_alt"
-              className="object-cover object-center mb-5"
-            />
-            <span>
-              실패하지 않는
-              <br />
-              남자 선물
-            </span>
-          </div>
-          <div>
-            <img
-              src="https://images.unsplash.com/photo-1525981045450-60e3d2ca0b8f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
-              alt="image_alt"
-              className="object-cover object-center mb-5"
-            />
-            <span>
-              실패하지 않는
-              <br />
-              남자 선물
-            </span>
-          </div>
+          <Link href="/product">
+            <div className="cursor-pointer">
+              <img
+                src="https://images.unsplash.com/photo-1525981045450-60e3d2ca0b8f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+                alt="image_alt"
+                className="object-cover object-center mb-5"
+              />
+              <span>
+                실패하지 않는
+                <br />
+                남자 선물
+              </span>
+            </div>
+          </Link>
+          <Link href="/product">
+            <div className="cursor-pointer">
+              <img
+                src="https://images.unsplash.com/photo-1525981045450-60e3d2ca0b8f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+                alt="image_alt"
+                className="object-cover object-center mb-5"
+              />
+              <span>
+                실패하지 않는
+                <br />
+                남자 선물
+              </span>
+            </div>
+          </Link>
+          <Link href="/product">
+            <div className="cursor-pointer">
+              <img
+                src="https://images.unsplash.com/photo-1525981045450-60e3d2ca0b8f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+                alt="image_alt"
+                className="object-cover object-center mb-5"
+              />
+              <span>
+                실패하지 않는
+                <br />
+                남자 선물
+              </span>
+            </div>
+          </Link>
         </div>
       </div>
     </div>
