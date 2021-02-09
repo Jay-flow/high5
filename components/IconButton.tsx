@@ -2,14 +2,15 @@ interface IconButtonProps {
   children: JSX.Element | JSX.Element[]
   title: string
   className: string
+  onClick: () => void
 }
 
-const IconButton: React.FC<IconButtonProps> = ({ children, title, className }) => {
+const IconButton: React.FC<IconButtonProps> = ({ children, title, className, onClick }) => {
   return (
-    <div className={`flex items-center space-x-4 ${className}`}>
+    <button className={`flex items-center space-x-4 ${className}`} onClick={onClick}>
       {children}
       <span className="text-base">{title}</span>
-    </div>
+    </button>
   )
 }
 

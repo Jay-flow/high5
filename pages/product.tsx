@@ -5,8 +5,11 @@ import Youtube from "../asset/Youtube"
 import Naver from "../asset/Naver"
 import ImgNavigation from "../components/ImgNavigation"
 import { useState } from "react"
+import { useRouter } from "next/router"
 
 const Product: React.FC = () => {
+  const router = useRouter()
+
   const features = [
     "15.6형",
     "4K UHD (3840 x 2160) 16:9",
@@ -39,9 +42,13 @@ const Product: React.FC = () => {
     }
   }
 
+  const redirectUrl = (url: string) => {
+    router.push(url)
+  }
+
   return (
-    <div className="grid h-full grid-cols-2">
-      <div>
+    <div className="grid h-full grid-cols-2 px-20 py-28">
+      <div className="p-10">
         <div className="mb-10">
           <SubTitle>Laptop/Gaming</SubTitle>
         </div>
@@ -58,17 +65,26 @@ const Product: React.FC = () => {
           ))}
         </div>
         <div className="mb-40">
-          <IconButton className="mb-8" title="최저가 보기">
+          <IconButton
+            className="mb-8"
+            title="최저가 보기"
+            onClick={() => redirectUrl("https://naver.com")}>
             <Logo />
           </IconButton>
-          <IconButton className="mb-8" title="Youtube 영상 보기">
+          <IconButton
+            className="mb-8"
+            title="Youtube 영상 보기"
+            onClick={() => redirectUrl("https://www.youtube.com/")}>
             <Youtube />
           </IconButton>
-          <IconButton className="mb-8" title="네이버쇼핑 리뷰 보기">
+          <IconButton
+            className="mb-8"
+            title="네이버쇼핑 리뷰 보기"
+            onClick={() => redirectUrl("https://shopping.naver.com/")}>
             <Naver />
           </IconButton>
         </div>
-        <div className="flex justify-end">
+        <div className="flex justify-start">
           <ImgNavigation
             className="w-32"
             pageUp={pageUp}
@@ -78,7 +94,7 @@ const Product: React.FC = () => {
           />
         </div>
       </div>
-      <div className="h-full">
+      <div className="h-full p-10">
         <div
           className="h-full bg-center bg-cover"
           style={{
