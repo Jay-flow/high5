@@ -12,14 +12,14 @@ const Search: React.FC = () => {
     "전자제품>키보드>27인치"
   ]
   const searchMenuComponents = searchMenus.map((menu) => (
-    <Link href="/product">
+    <Link key={menu} href="/product">
       <span className="mb-10 text-4xl font-light leading-9.5">{menu}</span>
     </Link>
   ))
 
   return (
     <div className="flex flex-col justify-center h-full p-40 text-white bg-gray-900 cursor-pointer">
-      <div onClick={() => router.back()}>
+      <button onClick={() => router.back()}>
         <svg
           width="32"
           height="32"
@@ -32,7 +32,7 @@ const Search: React.FC = () => {
             fill="white"
           />
         </svg>
-      </div>
+      </button>
       {searchMenuComponents}
     </div>
   )

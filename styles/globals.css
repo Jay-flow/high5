@@ -12,5 +12,10 @@ body,
 #__next {
   height: 100%;
   @apply font-body;
-  color: "#111827";
+  color: #111827;
+}
+
+button,
+a {
+  @apply focus:outline-none;
 }

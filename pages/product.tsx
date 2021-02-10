@@ -6,11 +6,11 @@ import Naver from "../asset/Naver"
 import ImgNavigation from "../components/ImgNavigation"
 import { useState } from "react"
 import { useRouter } from "next/router"
-import AngleBracket from "../asset/AngleBracket"
-import Dot from "../asset/Dot"
+import RankImageView from "../components/RankImageView"
 
 const Product: React.FC = () => {
   const router = useRouter()
+  const [productImageIndex, setIndex] = useState(0)
 
   const features = [
     "15.6형",
@@ -23,7 +23,6 @@ const Product: React.FC = () => {
     "멀티태스크"
   ]
 
-  const [index, setIndex] = useState(0)
   const imageUrls = [
     "https://images.unsplash.com/photo-1612832164066-305667c23a01?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
     "https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
@@ -33,28 +32,18 @@ const Product: React.FC = () => {
   ]
 
   const pageUp = () => {
-    if (index + 1 < imageUrls.length) {
-      setIndex(index + 1)
+    if (productImageIndex + 1 < imageUrls.length) {
+      setIndex(productImageIndex + 1)
     }
   }
 
   const pageDown = () => {
-    if (index > 0) {
-      setIndex(index - 1)
+    if (productImageIndex > 0) {
+      setIndex(productImageIndex - 1)
     }
   }
 
-  const redirectUrl = (url: string) => {
-    router.push(url)
-  }
-
-  const dots = () => {
-    return imageUrls.map((url, selectIndex) => {
-      return (
-        <Dot key={url} className={`mr-3 ${index == selectIndex ? "bg-red-600" : "bg-gray-100"}`} />
-      )
-    })
-  }
+  const redirectUrl = (url: string) => router.push(url)
 
   return (
     <div className="grid h-full grid-cols-2 px-20 py-28">
@@ -100,40 +89,17 @@ const Product: React.FC = () => {
             pageUp={pageUp}
             pageDown={pageDown}
             imageUrlLength={5}
-            index={index}
+            productImageIndex={productImageIndex}
           />
         </div>
       </div>
       <div className="h-full p-10">
-        <div
-          className="relative h-full bg-center bg-cover"
-          style={{
-            backgroundImage: `url(${imageUrls[index]})`
-          }}>
-          <div className="absolute bottom-0 left-0 flex flex-col justify-between w-full h-full">
-            <div className="flex flex-col items-center justify-center w-24 h-24 text-xl text-white bg-red-600 font-roboto">
-              <span>Rank</span>
-              <span>1</span>
-            </div>
-            <div className="flex justify-between">
-              <button
-                className={`w-12 bg-white h-14 flex justify-center items-center ${
-                  index == 0 ? "invisible" : "visible"
-                }`}
-                onClick={pageDown}>
-                <AngleBracket type="left" />
-              </button>
-              <button
-                className={`w-12 bg-white border-none h-14 flex justify-center items-center ${
-                  index + 1 == imageUrls.length ? "invisible" : "visible"
-                }`}
-                onClick={pageUp}>
-                <AngleBracket type="right" />
-              </button>
-            </div>
-            <div className="flex justify-center w-full mb-12">{dots()}</div>
-          </div>
-        </div>
+        <RankImageView
+          pageDown={pageDown}
+          pageUp={pageUp}
+          imageUrls={imageUrls}
+          productImageIndex={productImageIndex}
+        />
       </div>
     </div>
   )

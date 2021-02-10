@@ -5,7 +5,7 @@ interface ImgNavigationProps {
   imageUrlLength: number
   pageUp: () => void
   pageDown: () => void
-  index: number
+  productImageIndex: number
 }
 
 const ImgNavigation: React.FC<ImgNavigationProps> = ({
@@ -13,9 +13,9 @@ const ImgNavigation: React.FC<ImgNavigationProps> = ({
   imageUrlLength,
   pageDown,
   pageUp,
-  index
+  productImageIndex
 }) => {
-  const reIndex = index + 1
+  const reIndex = productImageIndex + 1
   return (
     <div className={`flex items-center justify-between w-32 text-base font-medium ${className}`}>
       <AngleBracket
